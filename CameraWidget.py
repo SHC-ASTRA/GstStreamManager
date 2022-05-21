@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 
 import requests
+import signal
 from subprocess import Popen
 
 class CameraWidget(QWidget):
@@ -96,5 +97,6 @@ class CameraWidget(QWidget):
 
         if self.process is None:
             return
-        self.process.terminate()
+        self.process.send_signal(signal.SIGINT)
+        self.process.wait()
         self.process = None
