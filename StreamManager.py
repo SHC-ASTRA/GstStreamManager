@@ -16,7 +16,6 @@ class Screen(QWidget):
         self.setLayout(layout)
 
         self.server_conn = scw.ServerConnectionWidget()
-        # self.camera_adder = caw.CameraAddWidget()
 
         self.camera_list = clw.CameraListWidget()
         self.server_conn.connect.connect(self.camera_list.populate)

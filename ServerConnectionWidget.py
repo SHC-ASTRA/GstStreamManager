@@ -9,7 +9,7 @@ class ServerConnectionWidget(QWidget):
         layout = QGridLayout()
         self.setLayout(layout)
 
-        self.server_box = QLineEdit("localhost")
+        self.server_box = QLineEdit("192.168.1.2")
         self.server_box.setPlaceholderText("Server Addresses")
         connect_button = QPushButton("Connect")
         connect_button.clicked.connect(self.__connect)
