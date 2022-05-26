@@ -35,7 +35,7 @@ class CameraWidget(QWidget):
         for encoding in self.encodings.keys():
             self.encoding_list.addItem(encoding)
 
-        start_button = QPushButton("Start")
+        start_button = QPushButton("Start") 
         start_button.clicked.connect(self.start_camera_stream)
         pause_button = QPushButton("Pause")
         pause_button.clicked.connect(self.pause_camera_stream)
@@ -65,9 +65,9 @@ class CameraWidget(QWidget):
             return
 
         if encoding in ["mjpeg","raw_mjpeg"] and self.process is None:
-            self.process = Popen(f"gst-launch-1.0 udpsrc port={self.recv_port} ! application/x-rtp,encoding=JPEG,payload=26 ! rtpjitterbuffer latency=10 ! rtpjpegdepay ! decodebin ! autovideosink", shell=True)
+            self.process = Popen(f"gst-launch-1.0 udpsrc port={self.recv_port} ! application/x-rtp,encoding=JPEG,payload=26 ! rtpjpegdepay ! decodebin ! autovideosink", shell=True)
         elif encoding in ["raw_h264", "h264", "h264_from_mjpeg"] and self.process is None:
-            self.process = Popen(f"gst-launch-1.0 udpsrc port={self.recv_port} ! application/x-rtp,encoding=H264 ! rtpjitterbuffer latency=10 ! rtph264depay ! decodebin ! autovideosink", shell=True)
+            self.process = Popen(f"gst-launch-1.0 udpsrc port={self.recv_port} ! application/x-rtp,encoding=H264 ! rtph264depay ! decodebin ! autovideosink", shell=True)
 
         res = self.resolution_list.currentIndex()
         width, height = self.encodings[encoding]["resolutions"][res]

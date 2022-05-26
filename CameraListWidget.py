@@ -25,6 +25,9 @@ class CameraListWidget(QWidget):
             count = 0
             for device in data:
                 encodings = data[device]["encodings"]
+                if len(encodings) == 0:
+                    continue
+                
                 cam_widget = CameraWidget(server_name, url, 11429+ports_assigned, device, encodings)
                 self.layout.addWidget(cam_widget, count, i)
                 ports_assigned += 1
